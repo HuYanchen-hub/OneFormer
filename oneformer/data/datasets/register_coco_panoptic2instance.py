@@ -39,6 +39,6 @@ def register_panoptic2instances_coco(root):
             os.path.join(root, image_root),
         )
 
-
+# _root = "/home/bingxing2/gpuuser206/mmdetection/data"
 _root = os.path.expanduser(os.getenv("DETECTRON2_DATASETS", "datasets"))
 register_panoptic2instances_coco(_root)

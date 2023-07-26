@@ -413,6 +413,11 @@ def main(args):
         DetectionCheckpointer(model, save_dir=cfg.OUTPUT_DIR).resume_or_load(
             cfg.MODEL.WEIGHTS, resume=args.resume
         )
+        # with open('one_former_orin.txt', 'w') as f:
+        #     for ind, i in model.state_dict().items():
+        #         print(ind, i.shape)
+        #         f.write(ind + '------>')
+        #         f.write(str(i.shape) + '\n')
         res = Trainer.test(cfg, model)
         if cfg.TEST.AUG.ENABLED:
             res.update(Trainer.test_with_TTA(cfg, model))

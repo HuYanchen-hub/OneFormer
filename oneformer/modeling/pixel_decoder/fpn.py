@@ -153,7 +153,8 @@ class BasePixelDecoder(nn.Module):
             if num_cur_levels < self.oneformer_num_feature_levels:
                 multi_scale_features.append(y)
                 num_cur_levels += 1
-        return self.mask_features(y), None, multi_scale_features
+        #(b, c,H/2, W/2)   [(b, c,H/16, W/16), (b, c,H/8, W/8), (b, c,H/4, W/4)]
+        return self.mask_features(y), None, multi_scale_features 
 
     def forward(self, features, targets=None):
         logger = logging.getLogger(__name__)
@@ -306,7 +307,8 @@ class TransformerEncoderPixelDecoder(BasePixelDecoder):
             if num_cur_levels < self.oneformer_num_feature_levels:
                 multi_scale_features.append(y)
                 num_cur_levels += 1
-        return self.mask_features(y), transformer_encoder_features, multi_scale_features
+        #第一层经过CNN输出的特征，最后一层经过transformer输出特征，多尺度特征
+        return self.mask_features(y), transformer_encoder_features, multi_scale_features 
 
     def forward(self, features, targets=None):
         logger = logging.getLogger(__name__)

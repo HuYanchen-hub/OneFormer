@@ -141,7 +141,7 @@ class OneFormer(nn.Module):
             prompt_ctx = None
 
         task_mlp = MLP(cfg.INPUT.TASK_SEQ_LEN, cfg.MODEL.ONE_FORMER.HIDDEN_DIM,
-                        cfg.MODEL.ONE_FORMER.HIDDEN_DIM, 2)
+                        cfg.MODEL.ONE_FORMER.HIDDEN_DIM, 2) #77, 256, 256, 2
 
         # Loss parameters:
         deep_supervision = cfg.MODEL.ONE_FORMER.DEEP_SUPERVISION
@@ -231,7 +231,6 @@ class OneFormer(nn.Module):
             text = rearrange(text, 'b n l -> (b n) l', n=num_text)
             squeeze_dim = True
 
-        # [B, C]
         x = self.text_encoder(text)
 
         text_x = self.text_projector(x)
@@ -273,14 +272,16 @@ class OneFormer(nn.Module):
         images = [(x - self.pixel_mean) / self.pixel_std for x in images]
         images = ImageList.from_tensors(images, self.size_divisibility)
 
-        tasks = torch.cat([self.task_tokenizer(x["task"]).to(self.device).unsqueeze(0) for x in batched_inputs], dim=0)
-        tasks = self.task_mlp(tasks.float())
+        #对任务文本（The task is {}）进行序列化，经过MLP
+        tasks = torch.cat([self.task_tokenizer(x["task"]).to(self.device).unsqueeze(0) for x in batched_inputs], dim=0) #(1, 77)
+        tasks = self.task_mlp(tasks.float()) #(1,256)
 
-        features = self.backbone(images.tensor)
+        features = self.backbone(images.tensor) 
         outputs = self.sem_seg_head(features, tasks)
 
         if self.training:
-            texts = torch.cat([self.text_tokenizer(x["text"]).to(self.device).unsqueeze(0) for x in batched_inputs], dim=0)
+            #对texts进行稀疏化，送入编码器
+            texts = torch.cat([self.text_tokenizer(x["text"]).to(self.device).unsqueeze(0) for x in batched_inputs], dim=0) #B，Nq，77
             texts_x = self.encode_text(texts)
 
             outputs = {**outputs, **texts_x}
@@ -288,6 +289,7 @@ class OneFormer(nn.Module):
             # mask classification target
             if "instances" in batched_inputs[0]:
                 gt_instances = [x["instances"].to(self.device) for x in batched_inputs]
+                # 对mask做pad
                 targets = self.prepare_targets(gt_instances, images)
             else:
                 targets = None
@@ -379,14 +381,14 @@ class OneFormer(nn.Module):
         scores, labels = F.softmax(mask_cls, dim=-1).max(-1)
         mask_pred = mask_pred.sigmoid()
 
-        keep = labels.ne(self.sem_seg_head.num_classes) & (scores > self.object_mask_threshold)
-        cur_scores = scores[keep]
+        keep = labels.ne(self.sem_seg_head.num_classes) & (scores > self.object_mask_threshold) # 去除背景
+        cur_scores = scores[keep] 
         cur_classes = labels[keep]
         cur_masks = mask_pred[keep]
         cur_mask_cls = mask_cls[keep]
         cur_mask_cls = cur_mask_cls[:, :-1]
 
-        cur_prob_masks = cur_scores.view(-1, 1, 1) * cur_masks
+        cur_prob_masks = cur_scores.view(-1, 1, 1) * cur_masks #
 
         h, w = cur_masks.shape[-2:]
         panoptic_seg = torch.zeros((h, w), dtype=torch.int32, device=cur_masks.device)
@@ -446,6 +448,7 @@ class OneFormer(nn.Module):
         labels_per_image = labels[topk_indices]
 
         topk_indices = topk_indices // self.sem_seg_head.num_classes
+        # topk_indices = torch.div(topk_indices, self.sem_seg_head.num_classes, rounding_mode="floor")
         # mask_pred = mask_pred.unsqueeze(1).repeat(1, self.sem_seg_head.num_classes, 1).flatten(0, 1)
         mask_pred = mask_pred[topk_indices]
 

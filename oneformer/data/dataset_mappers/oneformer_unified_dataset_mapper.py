@@ -150,7 +150,7 @@ class OneFormerUnifiedDatasetMapper:
                     else:
                         idx = classes.index(class_id)
                         masks[idx] += mask
-                        masks[idx] = np.clip(masks[idx], 0, 1).astype(np.bool)
+                        masks[idx] = np.clip(masks[idx], 0, 1).astype(np.bool_)
                     label[mask] = class_id
         
         num = 0

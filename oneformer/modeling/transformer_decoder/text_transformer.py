@@ -211,24 +211,24 @@ class TextTransformer(nn.Module):
         context_length: int,
         width: int,
         layers: int,
-        vocab_size,
+        vocab_size, #49408
         use_checkpoint=False,
     ):
 
         super().__init__()
         heads = width // 64
-        self.context_length = context_length
-        self.width = width
+        self.context_length = context_length #77
+        self.width = width #256
         self.transformer = Transformer(
             width=width,
-            layers=layers,
+            layers=layers, #7
             heads=heads,
-            attn_mask=self.build_attention_mask(),
+            attn_mask=self.build_attention_mask(), #上三角为'-inf',下三角为0矩阵
             use_checkpoint=use_checkpoint)
 
         self.positional_embedding = nn.Parameter(torch.empty(self.context_length, width))
         self.ln_final = nn.LayerNorm(width)
-        self.token_embedding = nn.Embedding(vocab_size, width)
+        self.token_embedding = nn.Embedding(vocab_size, width) #49408, 256
         nn.init.normal_(self.token_embedding.weight, std=0.02)
 
         # initialization
@@ -240,9 +240,9 @@ class TextTransformer(nn.Module):
         mask = torch.empty(self.context_length, self.context_length)
         mask.fill_(float('-inf'))
         mask.triu_(1)  # zero out the lower diagonal
-        return mask
+        return mask 
 
-    def forward(self, text):
+    def forward(self, text): # B*N，L
         x = self.token_embedding(text)
         x = x + self.positional_embedding
         x = x.permute(1, 0, 2)  # NLD -> LND
@@ -252,6 +252,6 @@ class TextTransformer(nn.Module):
 
         # x.shape = [batch_size, n_ctx, transformer.width]
         # take features from the eot embedding (eot_token is the highest number in each sequence)
-        x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)]
+        x = x[torch.arange(x.shape[0]), text.argmax(dim=-1)] # N，D
 
         return x

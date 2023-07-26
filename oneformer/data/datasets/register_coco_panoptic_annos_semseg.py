@@ -24,19 +24,19 @@ logger = logging.getLogger(__name__)
 _PREDEFINED_SPLITS_COCO_PANOPTIC = {
     "coco_2017_train_panoptic": (
         # This is the original panoptic annotation directory
-        "coco/panoptic_train2017",
+        "coco/annotations/panoptic_train2017",
         "coco/annotations/panoptic_train2017.json",
         # This directory contains semantic annotations that are
         # converted from panoptic annotations.
         # It is used by PanopticFPN.
         # You can use the script at detectron2/datasets/prepare_panoptic_fpn.py
         # to create these directories.
-        "coco/panoptic_semseg_train2017",
+        "coco/annotations/panoptic_semseg_train2017",
     ),
     "coco_2017_val_panoptic": (
-        "coco/panoptic_val2017",
+        "coco/annotations/panoptic_val2017",
         "coco/annotations/panoptic_val2017.json",
-        "coco/panoptic_semseg_val2017",
+        "coco/annotations/panoptic_semseg_val2017",
     ),
 }
 
@@ -320,7 +320,7 @@ def register_coco_panoptic_annos_sem_seg(
     )
 
     # the name is "coco_2017_train_panoptic_with_sem_seg" and "coco_2017_val_panoptic_with_sem_seg"
-    semantic_name = name + "_with_sem_seg"
+    semantic_name = name + "_with_sem_seg" 
     DatasetCatalog.register(
         semantic_name,
         lambda: load_coco_panoptic_json(panoptic_json, instances_json, instances_name, image_root, panoptic_root, sem_seg_root, metadata),
@@ -344,7 +344,7 @@ def register_all_coco_panoptic_annos_sem_seg(root):
         (panoptic_root, panoptic_json, semantic_root),
     ) in _PREDEFINED_SPLITS_COCO_PANOPTIC.items():
 
-        prefix_instances = prefix[: -len("_panoptic")]
+        prefix_instances = prefix[: -len("_panoptic")] # coco_2017_val
         instances_meta = MetadataCatalog.get(prefix_instances)
         image_root, instances_json = instances_meta.image_root, instances_meta.json_file
 
@@ -354,14 +354,16 @@ def register_all_coco_panoptic_annos_sem_seg(root):
         register_coco_panoptic_annos_sem_seg(
             prefix,
             get_metadata(),
-            image_root,
-            os.path.join(root, panoptic_root),
-            os.path.join(root, panoptic_json),
-            os.path.join(root, semantic_root),
-            instances_json,
-            prefix_instances,
+            os.path.join(root, image_root),    # ""
+            os.path.join(root, panoptic_root), # "coco/annotations/panoptic_val2017",
+            os.path.join(root, panoptic_json), # "coco/annotations/panoptic_val2017.json",
+            os.path.join(root, semantic_root), # "coco/annotations/panoptic_semseg_val2017",
+            os.path.join(root, instances_json),# "coco/annotations/instance_val2017"
+            prefix_instances, # coco_2017_val
         )
 
 
+# 
+# _root = "/home/bingxing2/gpuuser206/mmdetection/data"
 _root = os.getenv("DETECTRON2_DATASETS", "datasets")
 register_all_coco_panoptic_annos_sem_seg(_root)

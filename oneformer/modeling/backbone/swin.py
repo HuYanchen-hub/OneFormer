@@ -100,7 +100,7 @@ class WindowAttention(nn.Module):
         self.window_size = window_size  # Wh, Ww
         self.num_heads = num_heads
         head_dim = dim // num_heads
-        self.scale = qk_scale or head_dim ** -0.5
+        self.scale = qk_scale or head_dim ** -0.5 # 根号下dk分之一, 为了避免梯度过小
 
         # define a parameter table of relative position bias
         self.relative_position_bias_table = nn.Parameter(
@@ -110,7 +110,8 @@ class WindowAttention(nn.Module):
         # get pair-wise relative position index for each token inside the window
         coords_h = torch.arange(self.window_size[0])
         coords_w = torch.arange(self.window_size[1])
-        coords = torch.stack(torch.meshgrid([coords_h, coords_w]))  # 2, Wh, Ww
+        #TODO: 要求Wh, Ww维度相同？
+        coords = torch.stack(torch.meshgrid([coords_h, coords_w]))  # 2, Wh, Ww #stack((Wh, Ww), (Ww, Wh))
         coords_flatten = torch.flatten(coords, 1)  # 2, Wh*Ww
         relative_coords = coords_flatten[:, :, None] - coords_flatten[:, None, :]  # 2, Wh*Ww, Wh*Ww
         relative_coords = relative_coords.permute(1, 2, 0).contiguous()  # Wh*Ww, Wh*Ww, 2
@@ -118,6 +119,7 @@ class WindowAttention(nn.Module):
         relative_coords[:, :, 1] += self.window_size[1] - 1
         relative_coords[:, :, 0] *= 2 * self.window_size[1] - 1
         relative_position_index = relative_coords.sum(-1)  # Wh*Ww, Wh*Ww
+        # register_buffer()希望模型中的某些参数参数不更新（从开始到结束均保持不变），但又希望参数保存下来（model.state_dict() ）
         self.register_buffer("relative_position_index", relative_position_index)
 
         self.qkv = nn.Linear(dim, dim * 3, bias=qkv_bias)
@@ -138,26 +140,26 @@ class WindowAttention(nn.Module):
         qkv = (
             self.qkv(x)
             .reshape(B_, N, 3, self.num_heads, C // self.num_heads)
-            .permute(2, 0, 3, 1, 4)
+            .permute(2, 0, 3, 1, 4) #(3, B_, nh, N, C/nh)
         )
         q, k, v = qkv[0], qkv[1], qkv[2]  # make torchscript happy (cannot use tensor as tuple)
 
         q = q * self.scale
-        attn = q @ k.transpose(-2, -1)
+        attn = q @ k.transpose(-2, -1) # B_, nh, N, N
 
-        relative_position_bias = self.relative_position_bias_table[
-            self.relative_position_index.view(-1)
-        ].view(
+        relative_position_bias = self.relative_position_bias_table[ # 2*Wh-1 * 2*Ww-1, nH
+            self.relative_position_index.view(-1) # Wh*Ww*Wh*Ww
+        ].view( # Wh*Ww*Wh*Ww, nH
             self.window_size[0] * self.window_size[1], self.window_size[0] * self.window_size[1], -1
         )  # Wh*Ww,Wh*Ww,nH
         relative_position_bias = relative_position_bias.permute(
             2, 0, 1
         ).contiguous()  # nH, Wh*Ww, Wh*Ww
-        attn = attn + relative_position_bias.unsqueeze(0)
+        attn = attn + relative_position_bias.unsqueeze(0) # B_, nh, N, N
 
         if mask is not None:
-            nW = mask.shape[0]
-            attn = attn.view(B_ // nW, nW, self.num_heads, N, N) + mask.unsqueeze(1).unsqueeze(0)
+            nW = mask.shape[0]         
+            attn = attn.view(B_ // nW, nW, self.num_heads, N, N) + mask.unsqueeze(1).unsqueeze(0) # 1, nW, 1, N, N
             attn = attn.view(-1, self.num_heads, N, N)
             attn = self.softmax(attn)
         else:
@@ -289,7 +291,7 @@ class SwinTransformerBlock(nn.Module):
         x = x.view(B, H * W, C)
 
         # FFN
-        x = shortcut + self.drop_path(x)
+        x = shortcut + self.drop_path(x) #batch随机设为0，无path传播
         x = x + self.drop_path(self.mlp(self.norm2(x)))
 
         return x
@@ -615,7 +617,7 @@ class SwinTransformer(nn.Module):
 
         self._freeze_stages()
 
-    def _freeze_stages(self):
+    def _freeze_stages(self): 
         if self.frozen_stages >= 0:
             self.patch_embed.eval()
             for param in self.patch_embed.parameters():
@@ -675,7 +677,8 @@ class SwinTransformer(nn.Module):
                 out = x_out.view(-1, H, W, self.num_features[i]).permute(0, 3, 1, 2).contiguous()
                 outs["res{}".format(i + 2)] = out
 
-        return outs
+
+        return outs #28， 14， 7， 7
 
     def train(self, mode=True):
         """Convert the model into training mode while keep layers freezed."""

@@ -138,12 +138,13 @@ if __name__ == "__main__":
                         help="discard stuff classes")
     args = parser.parse_args()
     
-    _root = os.getenv("DETECTRON2_DATASETS", "datasets")
-    root = os.path.join(_root, "coco")
+    # _root = os.getenv("DETECTRON2_DATASETS", "datasets")
+    # root = os.path.join(_root, "coco")
+    root = "/home/bingxing2/gpuuser206/mmdetection/data/coco"
     input_json_file = os.path.join(root, "annotations", "panoptic_val2017.json")
     output_json_file = os.path.join(root, "annotations", "panoptic2instances_val2017.json")
     categories_json_file = "datasets/panoptic_coco_categories.json"
-    segmentations_folder = os.path.join(root, "panoptic_val2017")
+    segmentations_folder = os.path.join(root, "annotations" , "panoptic_val2017")
     
     convert_panoptic_to_detection_coco_format(input_json_file,
                                               segmentations_folder,

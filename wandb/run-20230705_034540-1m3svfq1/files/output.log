@@ -1,0 +1,1564 @@
+[07/05 03:45:57 d2.engine.defaults]: Model:
+OneFormer(
+  (backbone): D2SwinTransformer(
+    (patch_embed): PatchEmbed(
+      (proj): Conv2d(3, 192, kernel_size=(4, 4), stride=(4, 4))
+      (norm): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    )
+    (pos_drop): Dropout(p=0.0, inplace=False)
+    (layers): ModuleList(
+      (0): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): Identity()
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=192, out_features=576, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=192, out_features=192, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=192, out_features=768, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=768, out_features=192, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          (reduction): Linear(in_features=768, out_features=384, bias=False)
+          (norm): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (1): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=384, out_features=1152, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=384, out_features=384, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=384, out_features=1536, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=1536, out_features=384, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          (reduction): Linear(in_features=1536, out_features=768, bias=False)
+          (norm): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (2): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (2): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (3): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (4): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (5): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (6): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (7): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (8): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (9): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (10): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (11): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (12): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (13): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (14): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (15): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (16): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (17): SwinTransformerBlock(
+            (norm1): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=768, out_features=2304, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=768, out_features=768, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=768, out_features=3072, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=3072, out_features=768, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+        (downsample): PatchMerging(
+          (reduction): Linear(in_features=3072, out_features=1536, bias=False)
+          (norm): LayerNorm((3072,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (3): BasicLayer(
+        (blocks): ModuleList(
+          (0): SwinTransformerBlock(
+            (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=1536, out_features=4608, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=1536, out_features=1536, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=1536, out_features=6144, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=6144, out_features=1536, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+          (1): SwinTransformerBlock(
+            (norm1): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+            (attn): WindowAttention(
+              (qkv): Linear(in_features=1536, out_features=4608, bias=True)
+              (attn_drop): Dropout(p=0.0, inplace=False)
+              (proj): Linear(in_features=1536, out_features=1536, bias=True)
+              (proj_drop): Dropout(p=0.0, inplace=False)
+              (softmax): Softmax(dim=-1)
+            )
+            (drop_path): DropPath()
+            (norm2): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+            (mlp): Mlp(
+              (fc1): Linear(in_features=1536, out_features=6144, bias=True)
+              (act): GELU()
+              (fc2): Linear(in_features=6144, out_features=1536, bias=True)
+              (drop): Dropout(p=0.0, inplace=False)
+            )
+          )
+        )
+      )
+    )
+    (norm0): LayerNorm((192,), eps=1e-05, elementwise_affine=True)
+    (norm1): LayerNorm((384,), eps=1e-05, elementwise_affine=True)
+    (norm2): LayerNorm((768,), eps=1e-05, elementwise_affine=True)
+    (norm3): LayerNorm((1536,), eps=1e-05, elementwise_affine=True)
+  )
+  (sem_seg_head): OneFormerHead(
+    (pixel_decoder): MSDeformAttnPixelDecoder(
+      (input_proj): ModuleList(
+        (0): Sequential(
+          (0): Conv2d(1536, 256, kernel_size=(1, 1), stride=(1, 1))
+          (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+        )
+        (1): Sequential(
+          (0): Conv2d(768, 256, kernel_size=(1, 1), stride=(1, 1))
+          (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+        )
+        (2): Sequential(
+          (0): Conv2d(384, 256, kernel_size=(1, 1), stride=(1, 1))
+          (1): GroupNorm(32, 256, eps=1e-05, affine=True)
+        )
+      )
+      (transformer): MSDeformAttnTransformerEncoderOnly(
+        (encoder): MSDeformAttnTransformerEncoder(
+          (layers): ModuleList(
+            (0): MSDeformAttnTransformerEncoderLayer(
+              (self_attn): MSDeformAttn(
+                (sampling_offsets): Linear(in_features=256, out_features=192, bias=True)
+                (attention_weights): Linear(in_features=256, out_features=96, bias=True)
+                (value_proj): Linear(in_features=256, out_features=256, bias=True)
+                (output_proj): Linear(in_features=256, out_features=256, bias=True)
+              )
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (linear1): Linear(in_features=256, out_features=1024, bias=True)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=1024, out_features=256, bias=True)
+              (dropout3): Dropout(p=0.1, inplace=False)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            )
+            (1): MSDeformAttnTransformerEncoderLayer(
+              (self_attn): MSDeformAttn(
+                (sampling_offsets): Linear(in_features=256, out_features=192, bias=True)
+                (attention_weights): Linear(in_features=256, out_features=96, bias=True)
+                (value_proj): Linear(in_features=256, out_features=256, bias=True)
+                (output_proj): Linear(in_features=256, out_features=256, bias=True)
+              )
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (linear1): Linear(in_features=256, out_features=1024, bias=True)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=1024, out_features=256, bias=True)
+              (dropout3): Dropout(p=0.1, inplace=False)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            )
+            (2): MSDeformAttnTransformerEncoderLayer(
+              (self_attn): MSDeformAttn(
+                (sampling_offsets): Linear(in_features=256, out_features=192, bias=True)
+                (attention_weights): Linear(in_features=256, out_features=96, bias=True)
+                (value_proj): Linear(in_features=256, out_features=256, bias=True)
+                (output_proj): Linear(in_features=256, out_features=256, bias=True)
+              )
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (linear1): Linear(in_features=256, out_features=1024, bias=True)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=1024, out_features=256, bias=True)
+              (dropout3): Dropout(p=0.1, inplace=False)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            )
+            (3): MSDeformAttnTransformerEncoderLayer(
+              (self_attn): MSDeformAttn(
+                (sampling_offsets): Linear(in_features=256, out_features=192, bias=True)
+                (attention_weights): Linear(in_features=256, out_features=96, bias=True)
+                (value_proj): Linear(in_features=256, out_features=256, bias=True)
+                (output_proj): Linear(in_features=256, out_features=256, bias=True)
+              )
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (linear1): Linear(in_features=256, out_features=1024, bias=True)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=1024, out_features=256, bias=True)
+              (dropout3): Dropout(p=0.1, inplace=False)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            )
+            (4): MSDeformAttnTransformerEncoderLayer(
+              (self_attn): MSDeformAttn(
+                (sampling_offsets): Linear(in_features=256, out_features=192, bias=True)
+                (attention_weights): Linear(in_features=256, out_features=96, bias=True)
+                (value_proj): Linear(in_features=256, out_features=256, bias=True)
+                (output_proj): Linear(in_features=256, out_features=256, bias=True)
+              )
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (linear1): Linear(in_features=256, out_features=1024, bias=True)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=1024, out_features=256, bias=True)
+              (dropout3): Dropout(p=0.1, inplace=False)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            )
+            (5): MSDeformAttnTransformerEncoderLayer(
+              (self_attn): MSDeformAttn(
+                (sampling_offsets): Linear(in_features=256, out_features=192, bias=True)
+                (attention_weights): Linear(in_features=256, out_features=96, bias=True)
+                (value_proj): Linear(in_features=256, out_features=256, bias=True)
+                (output_proj): Linear(in_features=256, out_features=256, bias=True)
+              )
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (linear1): Linear(in_features=256, out_features=1024, bias=True)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=1024, out_features=256, bias=True)
+              (dropout3): Dropout(p=0.1, inplace=False)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+            )
+          )
+        )
+      )
+      (pe_layer): Positional encoding PositionEmbeddingSine
+          num_pos_feats: 128
+          temperature: 10000
+          normalize: True
+          scale: 6.283185307179586
+      (mask_features): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+      (adapter_1): Conv2d(
+        192, 256, kernel_size=(1, 1), stride=(1, 1), bias=False
+        (norm): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+      (layer_1): Conv2d(
+        256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+        (norm): GroupNorm(32, 256, eps=1e-05, affine=True)
+      )
+    )
+    (predictor): ContrastiveMultiScaleMaskedTransformerDecoder(
+      (pe_layer): Positional encoding PositionEmbeddingSine
+          num_pos_feats: 128
+          temperature: 10000
+          normalize: True
+          scale: 6.283185307179586
+      (class_transformer): Transformer(
+        (encoder): TransformerEncoder(
+          (layers): ModuleList()
+        )
+        (decoder): TransformerDecoder(
+          (layers): ModuleList(
+            (0): TransformerDecoderLayer(
+              (self_attn): MultiheadAttention(
+                (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+              )
+              (multihead_attn): MultiheadAttention(
+                (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+              )
+              (linear1): Linear(in_features=256, out_features=2048, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=2048, out_features=256, bias=True)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (dropout3): Dropout(p=0.1, inplace=False)
+            )
+            (1): TransformerDecoderLayer(
+              (self_attn): MultiheadAttention(
+                (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+              )
+              (multihead_attn): MultiheadAttention(
+                (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+              )
+              (linear1): Linear(in_features=256, out_features=2048, bias=True)
+              (dropout): Dropout(p=0.1, inplace=False)
+              (linear2): Linear(in_features=2048, out_features=256, bias=True)
+              (norm1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (norm2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (norm3): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+              (dropout1): Dropout(p=0.1, inplace=False)
+              (dropout2): Dropout(p=0.1, inplace=False)
+              (dropout3): Dropout(p=0.1, inplace=False)
+            )
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (transformer_self_attention_layers): ModuleList(
+        (0): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (1): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (2): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (3): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (4): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (5): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (6): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (7): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (8): SelfAttentionLayer(
+          (self_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (transformer_cross_attention_layers): ModuleList(
+        (0): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (1): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (2): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (3): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (4): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (5): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (6): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (7): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+        (8): CrossAttentionLayer(
+          (multihead_attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+        )
+      )
+      (transformer_ffn_layers): ModuleList(
+        (0): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (1): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (2): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (3): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (4): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (5): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (6): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (7): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (8): FFNLayer(
+          (linear1): Linear(in_features=256, out_features=2048, bias=True)
+          (dropout): Dropout(p=0.0, inplace=False)
+          (linear2): Linear(in_features=2048, out_features=256, bias=True)
+          (norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+      (decoder_norm): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+      (query_embed): Embedding(150, 256)
+      (level_embed): Embedding(3, 256)
+      (input_proj): ModuleList(
+        (0): Sequential()
+        (1): Sequential()
+        (2): Sequential()
+      )
+      (class_input_proj): Conv2d(256, 256, kernel_size=(1, 1), stride=(1, 1))
+      (class_embed): Linear(in_features=256, out_features=134, bias=True)
+      (mask_embed): MLP(
+        (layers): ModuleList(
+          (0): Linear(in_features=256, out_features=256, bias=True)
+          (1): Linear(in_features=256, out_features=256, bias=True)
+          (2): Linear(in_features=256, out_features=256, bias=True)
+        )
+      )
+    )
+  )
+  (task_mlp): MLP(
+    (layers): ModuleList(
+      (0): Linear(in_features=77, out_features=256, bias=True)
+      (1): Linear(in_features=256, out_features=256, bias=True)
+    )
+  )
+  (text_encoder): TextTransformer(
+    (transformer): Transformer(
+      (resblocks): Sequential(
+        (0): ResidualAttentionBlock(
+          (attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (ln_1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Sequential(
+            (c_fc): Linear(in_features=256, out_features=1024, bias=True)
+            (gelu): QuickGELU()
+            (c_proj): Linear(in_features=1024, out_features=256, bias=True)
+          )
+          (ln_2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (1): ResidualAttentionBlock(
+          (attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (ln_1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Sequential(
+            (c_fc): Linear(in_features=256, out_features=1024, bias=True)
+            (gelu): QuickGELU()
+            (c_proj): Linear(in_features=1024, out_features=256, bias=True)
+          )
+          (ln_2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (2): ResidualAttentionBlock(
+          (attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (ln_1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Sequential(
+            (c_fc): Linear(in_features=256, out_features=1024, bias=True)
+            (gelu): QuickGELU()
+            (c_proj): Linear(in_features=1024, out_features=256, bias=True)
+          )
+          (ln_2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (3): ResidualAttentionBlock(
+          (attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (ln_1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Sequential(
+            (c_fc): Linear(in_features=256, out_features=1024, bias=True)
+            (gelu): QuickGELU()
+            (c_proj): Linear(in_features=1024, out_features=256, bias=True)
+          )
+          (ln_2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (4): ResidualAttentionBlock(
+          (attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (ln_1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Sequential(
+            (c_fc): Linear(in_features=256, out_features=1024, bias=True)
+            (gelu): QuickGELU()
+            (c_proj): Linear(in_features=1024, out_features=256, bias=True)
+          )
+          (ln_2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+        (5): ResidualAttentionBlock(
+          (attn): MultiheadAttention(
+            (out_proj): NonDynamicallyQuantizableLinear(in_features=256, out_features=256, bias=True)
+          )
+          (ln_1): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+          (mlp): Sequential(
+            (c_fc): Linear(in_features=256, out_features=1024, bias=True)
+            (gelu): QuickGELU()
+            (c_proj): Linear(in_features=1024, out_features=256, bias=True)
+          )
+          (ln_2): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+        )
+      )
+    )
+    (ln_final): LayerNorm((256,), eps=1e-05, elementwise_affine=True)
+    (token_embedding): Embedding(49408, 256)
+  )
+  (text_projector): MLP(
+    (layers): ModuleList(
+      (0): Linear(in_features=256, out_features=256, bias=True)
+      (1): Linear(in_features=256, out_features=256, bias=True)
+    )
+  )
+  (prompt_ctx): Embedding(16, 256)
+  (criterion): Criterion SetCriterion
+      matcher: Matcher HungarianMatcher
+          cost_class: 2.0
+          cost_mask: 5.0
+          cost_dice: 5.0
+      losses: ['labels', 'masks', 'contrastive']
+      weight_dict: {'loss_ce': 2.0, 'loss_mask': 5.0, 'loss_dice': 5.0, 'loss_contrastive': 0.5, 'loss_ce_0': 2.0, 'loss_mask_0': 5.0, 'loss_dice_0': 5.0, 'loss_contrastive_0': 0.5, 'loss_ce_1': 2.0, 'loss_mask_1': 5.0, 'loss_dice_1': 5.0, 'loss_contrastive_1': 0.5, 'loss_ce_2': 2.0, 'loss_mask_2': 5.0, 'loss_dice_2': 5.0, 'loss_contrastive_2': 0.5, 'loss_ce_3': 2.0, 'loss_mask_3': 5.0, 'loss_dice_3': 5.0, 'loss_contrastive_3': 0.5, 'loss_ce_4': 2.0, 'loss_mask_4': 5.0, 'loss_dice_4': 5.0, 'loss_contrastive_4': 0.5, 'loss_ce_5': 2.0, 'loss_mask_5': 5.0, 'loss_dice_5': 5.0, 'loss_contrastive_5': 0.5, 'loss_ce_6': 2.0, 'loss_mask_6': 5.0, 'loss_dice_6': 5.0, 'loss_contrastive_6': 0.5, 'loss_ce_7': 2.0, 'loss_mask_7': 5.0, 'loss_dice_7': 5.0, 'loss_contrastive_7': 0.5, 'loss_ce_8': 2.0, 'loss_mask_8': 5.0, 'loss_dice_8': 5.0, 'loss_contrastive_8': 0.5}
+      num_classes: 133
+      eos_coef: 0.1
+      num_points: 12544
+      oversample_ratio: 3.0
+      importance_sample_ratio: 0.75
+)
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+relative_position_bias_table
+[32m[07/05 03:45:57 oneformer.data.dataset_mappers.coco_unified_new_baseline_dataset_mapper]: [39m[COCOUnifiedNewBaselineDatasetMapper] Full TransformGens used in training: [RandomFlip(), ResizeScale(min_scale=0.1, max_scale=2.0, target_height=1024, target_width=1024), FixedSizeCrop(crop_size=(1024, 1024))]
+[32m[07/05 03:46:19 oneformer.data.datasets.register_coco_panoptic_annos_semseg]: [39mLoading /home/bingxing2/gpuuser206/mmdetection/data/coco/annotations/instances_train2017.json takes 15.69 seconds.
+[32m[07/05 03:46:20 oneformer.data.datasets.register_coco_panoptic_annos_semseg]: [39mLoaded 118287 images in COCO format from /home/bingxing2/gpuuser206/mmdetection/data/coco/annotations/instances_train2017.json
+[07/05 03:46:28 d2.data.build]: Removed 1021 images with no usable annotations. 117266 images left.
+[07/05 03:46:32 d2.data.build]: Distribution of instances among all 80 categories:
+[36m|   category    | #instances   |   category   | #instances   |   category    | #instances   |
+[36m|:-------------:|:-------------|:------------:|:-------------|:-------------:|:-------------|
+[36m|    person     | 257253       |   bicycle    | 7056         |      car      | 43533        |
+[36m|  motorcycle   | 8654         |   airplane   | 5129         |      bus      | 6061         |
+[36m|     train     | 4570         |    truck     | 9970         |     boat      | 10576        |
+[36m| traffic light | 12842        | fire hydrant | 1865         |   stop sign   | 1983         |
+[36m| parking meter | 1283         |    bench     | 9820         |     bird      | 10542        |
+[36m|      cat      | 4766         |     dog      | 5500         |     horse     | 6567         |
+[36m|     sheep     | 9223         |     cow      | 8014         |   elephant    | 5484         |
+[36m|     bear      | 1294         |    zebra     | 5269         |    giraffe    | 5128         |
+[36m|   backpack    | 8714         |   umbrella   | 11265        |    handbag    | 12342        |
+[36m|      tie      | 6448         |   suitcase   | 6112         |    frisbee    | 2681         |
+[36m|     skis      | 6623         |  snowboard   | 2681         |  sports ball  | 6299         |
+[36m|     kite      | 8802         | baseball bat | 3273         | baseball gl.. | 3747         |
+[36m|  skateboard   | 5536         |  surfboard   | 6095         | tennis racket | 4807         |
+[36m|    bottle     | 24070        |  wine glass  | 7839         |      cup      | 20574        |
+[36m|     fork      | 5474         |    knife     | 7760         |     spoon     | 6159         |
+[36m|     bowl      | 14323        |    banana    | 9195         |     apple     | 5776         |
+[36m|   sandwich    | 4356         |    orange    | 6302         |   broccoli    | 7261         |
+[36m|    carrot     | 7758         |   hot dog    | 2884         |     pizza     | 5807         |
+[36m|     donut     | 7005         |     cake     | 6296         |     chair     | 38073        |
+[36m|     couch     | 5779         | potted plant | 8631         |      bed      | 4192         |
+[36m| dining table  | 15695        |    toilet    | 4149         |      tv       | 5803         |
+[36m|    laptop     | 4960         |    mouse     | 2261         |    remote     | 5700         |
+[36m|   keyboard    | 2854         |  cell phone  | 6422         |   microwave   | 1672         |
+[36m|     oven      | 3334         |   toaster    | 225          |     sink      | 5609         |
+[36m| refrigerator  | 2634         |     book     | 24077        |     clock     | 6320         |
+[36m|     vase      | 6577         |   scissors   | 1464         |  teddy bear   | 4729         |
+[36m|  hair drier   | 198          |  toothbrush  | 1945         |               |              |
+[36m|     total     | 849949       |              |              |               |              |
+[07/05 03:46:32 d2.data.build]: Using training sampler TrainingSampler
+[07/05 03:46:32 d2.data.common]: Serializing the dataset using: <class 'detectron2.data.common._TorchSerializedList'>
+[07/05 03:46:32 d2.data.common]: Serializing 117266 elements to byte tensors and concatenating them all ...
+[07/05 03:46:36 d2.data.common]: Serialized dataset takes 540.14 MiB
+[07/05 03:46:39 d2.checkpoint.detection_checkpoint]: [DetectionCheckpointer] Loading from ./checkpoints/swin_large_patch4_window12_384_22kto1k.pkl ...
+[07/05 03:46:39 fvcore.common.checkpoint]: [Checkpointer] Loading from ./checkpoints/swin_large_patch4_window12_384_22kto1k.pkl ...
+[07/05 03:46:42 fvcore.common.checkpoint]: Reading a file from 'third_party'
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.pixel_decoder.adapter_1.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.pixel_decoder.adapter_1.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.pixel_decoder.layer_1.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.pixel_decoder.layer_1.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.class_transformer.decoder.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.class_transformer.decoder.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.0.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.0.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.1.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.1.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.2.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.2.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.3.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.3.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.4.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.4.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.5.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.5.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.6.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.6.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.7.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.7.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.8.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_cross_attention_layers.8.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.0.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.0.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.1.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.1.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.2.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.2.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.3.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.3.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.4.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.4.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.5.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.5.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.6.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.6.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.7.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.7.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.8.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_ffn_layers.8.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.0.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.0.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.1.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.1.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.2.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.2.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.3.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.3.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.4.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.4.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.5.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.5.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.6.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.6.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.7.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.7.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.bias in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.8.norm.bias in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.bias will not be loaded. Please double check and see if this is desired.
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: Shape of norm.weight in checkpoint is torch.Size([1536]), while shape of sem_seg_head.predictor.transformer_self_attention_layers.8.norm.weight in model is torch.Size([256]).
+[31m[5mWARNING[39m[25m [07/05 03:46:42 d2.checkpoint.c2_model_loading]: norm.weight will not be loaded. Please double check and see if this is desired.
+[07/05 03:46:42 d2.checkpoint.c2_model_loading]: Following weights matched with submodule backbone:
+| Names in Model                       | Names in Checkpoint                                                                                                      | Shapes                                                     |
+|:-------------------------------------|:-------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------|
+| layers.0.blocks.0.attn.*             | layers.0.blocks.0.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (192,) (192,192) (576,) (576,192) (529,6) (144,144)        |
+| layers.0.blocks.0.mlp.fc1.*          | layers.0.blocks.0.mlp.fc1.{bias,weight}                                                                                  | (768,) (768,192)                                           |
+| layers.0.blocks.0.mlp.fc2.*          | layers.0.blocks.0.mlp.fc2.{bias,weight}                                                                                  | (192,) (192,768)                                           |
+| layers.0.blocks.0.norm1.*            | layers.0.blocks.0.norm1.{bias,weight}                                                                                    | (192,) (192,)                                              |
+| layers.0.blocks.0.norm2.*            | layers.0.blocks.0.norm2.{bias,weight}                                                                                    | (192,) (192,)                                              |
+| layers.0.blocks.1.attn.*             | layers.0.blocks.1.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (192,) (192,192) (576,) (576,192) (529,6) (144,144)        |
+| layers.0.blocks.1.mlp.fc1.*          | layers.0.blocks.1.mlp.fc1.{bias,weight}                                                                                  | (768,) (768,192)                                           |
+| layers.0.blocks.1.mlp.fc2.*          | layers.0.blocks.1.mlp.fc2.{bias,weight}                                                                                  | (192,) (192,768)                                           |
+| layers.0.blocks.1.norm1.*            | layers.0.blocks.1.norm1.{bias,weight}                                                                                    | (192,) (192,)                                              |
+| layers.0.blocks.1.norm2.*            | layers.0.blocks.1.norm2.{bias,weight}                                                                                    | (192,) (192,)                                              |
+| layers.0.downsample.norm.*           | layers.0.downsample.norm.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.0.downsample.reduction.weight | layers.0.downsample.reduction.weight                                                                                     | (384, 768)                                                 |
+| layers.1.blocks.0.attn.*             | layers.1.blocks.0.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (384,) (384,384) (1152,) (1152,384) (529,12) (144,144)     |
+| layers.1.blocks.0.mlp.fc1.*          | layers.1.blocks.0.mlp.fc1.{bias,weight}                                                                                  | (1536,) (1536,384)                                         |
+| layers.1.blocks.0.mlp.fc2.*          | layers.1.blocks.0.mlp.fc2.{bias,weight}                                                                                  | (384,) (384,1536)                                          |
+| layers.1.blocks.0.norm1.*            | layers.1.blocks.0.norm1.{bias,weight}                                                                                    | (384,) (384,)                                              |
+| layers.1.blocks.0.norm2.*            | layers.1.blocks.0.norm2.{bias,weight}                                                                                    | (384,) (384,)                                              |
+| layers.1.blocks.1.attn.*             | layers.1.blocks.1.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (384,) (384,384) (1152,) (1152,384) (529,12) (144,144)     |
+| layers.1.blocks.1.mlp.fc1.*          | layers.1.blocks.1.mlp.fc1.{bias,weight}                                                                                  | (1536,) (1536,384)                                         |
+| layers.1.blocks.1.mlp.fc2.*          | layers.1.blocks.1.mlp.fc2.{bias,weight}                                                                                  | (384,) (384,1536)                                          |
+| layers.1.blocks.1.norm1.*            | layers.1.blocks.1.norm1.{bias,weight}                                                                                    | (384,) (384,)                                              |
+| layers.1.blocks.1.norm2.*            | layers.1.blocks.1.norm2.{bias,weight}                                                                                    | (384,) (384,)                                              |
+| layers.1.downsample.norm.*           | layers.1.downsample.norm.{bias,weight}                                                                                   | (1536,) (1536,)                                            |
+| layers.1.downsample.reduction.weight | layers.1.downsample.reduction.weight                                                                                     | (768, 1536)                                                |
+| layers.2.blocks.0.attn.*             | layers.2.blocks.0.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.0.mlp.fc1.*          | layers.2.blocks.0.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.0.mlp.fc2.*          | layers.2.blocks.0.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.0.norm1.*            | layers.2.blocks.0.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.0.norm2.*            | layers.2.blocks.0.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.1.attn.*             | layers.2.blocks.1.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.1.mlp.fc1.*          | layers.2.blocks.1.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.1.mlp.fc2.*          | layers.2.blocks.1.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.1.norm1.*            | layers.2.blocks.1.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.1.norm2.*            | layers.2.blocks.1.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.10.attn.*            | layers.2.blocks.10.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.10.mlp.fc1.*         | layers.2.blocks.10.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.10.mlp.fc2.*         | layers.2.blocks.10.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.10.norm1.*           | layers.2.blocks.10.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.10.norm2.*           | layers.2.blocks.10.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.11.attn.*            | layers.2.blocks.11.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.11.mlp.fc1.*         | layers.2.blocks.11.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.11.mlp.fc2.*         | layers.2.blocks.11.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.11.norm1.*           | layers.2.blocks.11.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.11.norm2.*           | layers.2.blocks.11.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.12.attn.*            | layers.2.blocks.12.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.12.mlp.fc1.*         | layers.2.blocks.12.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.12.mlp.fc2.*         | layers.2.blocks.12.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.12.norm1.*           | layers.2.blocks.12.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.12.norm2.*           | layers.2.blocks.12.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.13.attn.*            | layers.2.blocks.13.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.13.mlp.fc1.*         | layers.2.blocks.13.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.13.mlp.fc2.*         | layers.2.blocks.13.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.13.norm1.*           | layers.2.blocks.13.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.13.norm2.*           | layers.2.blocks.13.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.14.attn.*            | layers.2.blocks.14.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.14.mlp.fc1.*         | layers.2.blocks.14.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.14.mlp.fc2.*         | layers.2.blocks.14.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.14.norm1.*           | layers.2.blocks.14.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.14.norm2.*           | layers.2.blocks.14.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.15.attn.*            | layers.2.blocks.15.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.15.mlp.fc1.*         | layers.2.blocks.15.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.15.mlp.fc2.*         | layers.2.blocks.15.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.15.norm1.*           | layers.2.blocks.15.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.15.norm2.*           | layers.2.blocks.15.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.16.attn.*            | layers.2.blocks.16.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.16.mlp.fc1.*         | layers.2.blocks.16.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.16.mlp.fc2.*         | layers.2.blocks.16.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.16.norm1.*           | layers.2.blocks.16.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.16.norm2.*           | layers.2.blocks.16.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.17.attn.*            | layers.2.blocks.17.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index} | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.17.mlp.fc1.*         | layers.2.blocks.17.mlp.fc1.{bias,weight}                                                                                 | (3072,) (3072,768)                                         |
+| layers.2.blocks.17.mlp.fc2.*         | layers.2.blocks.17.mlp.fc2.{bias,weight}                                                                                 | (768,) (768,3072)                                          |
+| layers.2.blocks.17.norm1.*           | layers.2.blocks.17.norm1.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.17.norm2.*           | layers.2.blocks.17.norm2.{bias,weight}                                                                                   | (768,) (768,)                                              |
+| layers.2.blocks.2.attn.*             | layers.2.blocks.2.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.2.mlp.fc1.*          | layers.2.blocks.2.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.2.mlp.fc2.*          | layers.2.blocks.2.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.2.norm1.*            | layers.2.blocks.2.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.2.norm2.*            | layers.2.blocks.2.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.3.attn.*             | layers.2.blocks.3.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.3.mlp.fc1.*          | layers.2.blocks.3.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.3.mlp.fc2.*          | layers.2.blocks.3.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.3.norm1.*            | layers.2.blocks.3.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.3.norm2.*            | layers.2.blocks.3.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.4.attn.*             | layers.2.blocks.4.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.4.mlp.fc1.*          | layers.2.blocks.4.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.4.mlp.fc2.*          | layers.2.blocks.4.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.4.norm1.*            | layers.2.blocks.4.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.4.norm2.*            | layers.2.blocks.4.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.5.attn.*             | layers.2.blocks.5.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.5.mlp.fc1.*          | layers.2.blocks.5.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.5.mlp.fc2.*          | layers.2.blocks.5.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.5.norm1.*            | layers.2.blocks.5.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.5.norm2.*            | layers.2.blocks.5.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.6.attn.*             | layers.2.blocks.6.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.6.mlp.fc1.*          | layers.2.blocks.6.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.6.mlp.fc2.*          | layers.2.blocks.6.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.6.norm1.*            | layers.2.blocks.6.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.6.norm2.*            | layers.2.blocks.6.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.7.attn.*             | layers.2.blocks.7.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.7.mlp.fc1.*          | layers.2.blocks.7.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.7.mlp.fc2.*          | layers.2.blocks.7.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.7.norm1.*            | layers.2.blocks.7.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.7.norm2.*            | layers.2.blocks.7.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.8.attn.*             | layers.2.blocks.8.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.8.mlp.fc1.*          | layers.2.blocks.8.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.8.mlp.fc2.*          | layers.2.blocks.8.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.8.norm1.*            | layers.2.blocks.8.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.8.norm2.*            | layers.2.blocks.8.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.9.attn.*             | layers.2.blocks.9.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (768,) (768,768) (2304,) (2304,768) (529,24) (144,144)     |
+| layers.2.blocks.9.mlp.fc1.*          | layers.2.blocks.9.mlp.fc1.{bias,weight}                                                                                  | (3072,) (3072,768)                                         |
+| layers.2.blocks.9.mlp.fc2.*          | layers.2.blocks.9.mlp.fc2.{bias,weight}                                                                                  | (768,) (768,3072)                                          |
+| layers.2.blocks.9.norm1.*            | layers.2.blocks.9.norm1.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.blocks.9.norm2.*            | layers.2.blocks.9.norm2.{bias,weight}                                                                                    | (768,) (768,)                                              |
+| layers.2.downsample.norm.*           | layers.2.downsample.norm.{bias,weight}                                                                                   | (3072,) (3072,)                                            |
+| layers.2.downsample.reduction.weight | layers.2.downsample.reduction.weight                                                                                     | (1536, 3072)                                               |
+| layers.3.blocks.0.attn.*             | layers.3.blocks.0.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (1536,) (1536,1536) (4608,) (4608,1536) (529,48) (144,144) |
+| layers.3.blocks.0.mlp.fc1.*          | layers.3.blocks.0.mlp.fc1.{bias,weight}                                                                                  | (6144,) (6144,1536)                                        |
+| layers.3.blocks.0.mlp.fc2.*          | layers.3.blocks.0.mlp.fc2.{bias,weight}                                                                                  | (1536,) (1536,6144)                                        |
+| layers.3.blocks.0.norm1.*            | layers.3.blocks.0.norm1.{bias,weight}                                                                                    | (1536,) (1536,)                                            |
+| layers.3.blocks.0.norm2.*            | layers.3.blocks.0.norm2.{bias,weight}                                                                                    | (1536,) (1536,)                                            |
+| layers.3.blocks.1.attn.*             | layers.3.blocks.1.attn.{proj.bias,proj.weight,qkv.bias,qkv.weight,relative_position_bias_table,relative_position_index}  | (1536,) (1536,1536) (4608,) (4608,1536) (529,48) (144,144) |
+| layers.3.blocks.1.mlp.fc1.*          | layers.3.blocks.1.mlp.fc1.{bias,weight}                                                                                  | (6144,) (6144,1536)                                        |
+| layers.3.blocks.1.mlp.fc2.*          | layers.3.blocks.1.mlp.fc2.{bias,weight}                                                                                  | (1536,) (1536,6144)                                        |
+| layers.3.blocks.1.norm1.*            | layers.3.blocks.1.norm1.{bias,weight}                                                                                    | (1536,) (1536,)                                            |
+| layers.3.blocks.1.norm2.*            | layers.3.blocks.1.norm2.{bias,weight}                                                                                    | (1536,) (1536,)                                            |
+| patch_embed.norm.*                   | patch_embed.norm.{bias,weight}                                                                                           | (192,) (192,)                                              |
+| patch_embed.proj.*                   | patch_embed.proj.{bias,weight}                                                                                           | (192,) (192,3,4,4)                                         |
+[31m[5mWARNING[39m[25m [07/05 03:46:42 fvcore.common.checkpoint]: Some model parameters or buffers are not found in the checkpoint:
+[34mbackbone.norm0.{bias, weight}
+[34mbackbone.norm1.{bias, weight}
+[34mbackbone.norm2.{bias, weight}
+[34mbackbone.norm3.{bias, weight}
+[34mcriterion.{empty_weight, logit_scale}
+[34mprompt_ctx.weight
+[34msem_seg_head.pixel_decoder.adapter_1.norm.{bias, weight}
+[34msem_seg_head.pixel_decoder.adapter_1.weight
+[34msem_seg_head.pixel_decoder.input_proj.0.0.{bias, weight}
+[34msem_seg_head.pixel_decoder.input_proj.0.1.{bias, weight}
+[34msem_seg_head.pixel_decoder.input_proj.1.0.{bias, weight}
+[34msem_seg_head.pixel_decoder.input_proj.1.1.{bias, weight}
+[34msem_seg_head.pixel_decoder.input_proj.2.0.{bias, weight}
+[34msem_seg_head.pixel_decoder.input_proj.2.1.{bias, weight}
+[34msem_seg_head.pixel_decoder.layer_1.norm.{bias, weight}
+[34msem_seg_head.pixel_decoder.layer_1.weight
+[34msem_seg_head.pixel_decoder.mask_features.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.linear1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.linear2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.norm1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.norm2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.self_attn.attention_weights.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.self_attn.output_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.self_attn.sampling_offsets.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.0.self_attn.value_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.linear1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.linear2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.norm1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.norm2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.self_attn.attention_weights.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.self_attn.output_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.self_attn.sampling_offsets.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.1.self_attn.value_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.linear1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.linear2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.norm1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.norm2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.self_attn.attention_weights.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.self_attn.output_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.self_attn.sampling_offsets.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.2.self_attn.value_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.linear1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.linear2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.norm1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.norm2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.self_attn.attention_weights.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.self_attn.output_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.self_attn.sampling_offsets.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.3.self_attn.value_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.linear1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.linear2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.norm1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.norm2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.self_attn.attention_weights.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.self_attn.output_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.self_attn.sampling_offsets.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.4.self_attn.value_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.linear1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.linear2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.norm1.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.norm2.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.self_attn.attention_weights.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.self_attn.output_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.self_attn.sampling_offsets.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.encoder.layers.5.self_attn.value_proj.{bias, weight}
+[34msem_seg_head.pixel_decoder.transformer.level_embed
+[34msem_seg_head.predictor.class_embed.{bias, weight}
+[34msem_seg_head.predictor.class_input_proj.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.linear1.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.linear2.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.norm1.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.norm2.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.norm3.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.0.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.linear1.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.linear2.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.norm1.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.norm2.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.norm3.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.class_transformer.decoder.layers.1.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.class_transformer.decoder.norm.{bias, weight}
+[34msem_seg_head.predictor.decoder_norm.{bias, weight}
+[34msem_seg_head.predictor.level_embed.weight
+[34msem_seg_head.predictor.mask_embed.layers.0.{bias, weight}
+[34msem_seg_head.predictor.mask_embed.layers.1.{bias, weight}
+[34msem_seg_head.predictor.mask_embed.layers.2.{bias, weight}
+[34msem_seg_head.predictor.query_embed.weight
+[34msem_seg_head.predictor.transformer_cross_attention_layers.0.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.0.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.0.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.1.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.1.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.1.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.2.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.2.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.2.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.3.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.3.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.3.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.4.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.4.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.4.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.5.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.5.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.5.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.6.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.6.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.6.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.7.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.7.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.7.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.8.multihead_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.8.multihead_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_cross_attention_layers.8.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.0.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.0.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.0.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.1.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.1.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.1.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.2.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.2.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.2.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.3.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.3.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.3.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.4.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.4.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.4.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.5.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.5.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.5.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.6.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.6.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.6.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.7.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.7.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.7.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.8.linear1.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.8.linear2.{bias, weight}
+[34msem_seg_head.predictor.transformer_ffn_layers.8.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.0.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.0.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.0.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.1.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.1.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.1.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.2.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.2.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.2.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.3.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.3.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.3.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.4.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.4.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.4.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.5.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.5.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.5.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.6.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.6.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.6.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.7.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.7.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.7.self_attn.{in_proj_bias, in_proj_weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.8.norm.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.8.self_attn.out_proj.{bias, weight}
+[34msem_seg_head.predictor.transformer_self_attention_layers.8.self_attn.{in_proj_bias, in_proj_weight}
+[34mtask_mlp.layers.0.{bias, weight}
+[34mtask_mlp.layers.1.{bias, weight}
+[34mtext_encoder.ln_final.{bias, weight}
+[34mtext_encoder.positional_embedding
+[34mtext_encoder.token_embedding.weight
+[34mtext_encoder.transformer.resblocks.0.attn.out_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.0.attn.{in_proj_bias, in_proj_weight}
+[34mtext_encoder.transformer.resblocks.0.ln_1.{bias, weight}
+[34mtext_encoder.transformer.resblocks.0.ln_2.{bias, weight}
+[34mtext_encoder.transformer.resblocks.0.mlp.c_fc.{bias, weight}
+[34mtext_encoder.transformer.resblocks.0.mlp.c_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.1.attn.out_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.1.attn.{in_proj_bias, in_proj_weight}
+[34mtext_encoder.transformer.resblocks.1.ln_1.{bias, weight}
+[34mtext_encoder.transformer.resblocks.1.ln_2.{bias, weight}
+[34mtext_encoder.transformer.resblocks.1.mlp.c_fc.{bias, weight}
+[34mtext_encoder.transformer.resblocks.1.mlp.c_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.2.attn.out_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.2.attn.{in_proj_bias, in_proj_weight}
+[34mtext_encoder.transformer.resblocks.2.ln_1.{bias, weight}
+[34mtext_encoder.transformer.resblocks.2.ln_2.{bias, weight}
+[34mtext_encoder.transformer.resblocks.2.mlp.c_fc.{bias, weight}
+[34mtext_encoder.transformer.resblocks.2.mlp.c_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.3.attn.out_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.3.attn.{in_proj_bias, in_proj_weight}
+[34mtext_encoder.transformer.resblocks.3.ln_1.{bias, weight}
+[34mtext_encoder.transformer.resblocks.3.ln_2.{bias, weight}
+[34mtext_encoder.transformer.resblocks.3.mlp.c_fc.{bias, weight}
+[34mtext_encoder.transformer.resblocks.3.mlp.c_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.4.attn.out_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.4.attn.{in_proj_bias, in_proj_weight}
+[34mtext_encoder.transformer.resblocks.4.ln_1.{bias, weight}
+[34mtext_encoder.transformer.resblocks.4.ln_2.{bias, weight}
+[34mtext_encoder.transformer.resblocks.4.mlp.c_fc.{bias, weight}
+[34mtext_encoder.transformer.resblocks.4.mlp.c_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.5.attn.out_proj.{bias, weight}
+[34mtext_encoder.transformer.resblocks.5.attn.{in_proj_bias, in_proj_weight}
+[34mtext_encoder.transformer.resblocks.5.ln_1.{bias, weight}
+[34mtext_encoder.transformer.resblocks.5.ln_2.{bias, weight}
+[34mtext_encoder.transformer.resblocks.5.mlp.c_fc.{bias, weight}
+[34mtext_encoder.transformer.resblocks.5.mlp.c_proj.{bias, weight}
+[34mtext_projector.layers.0.{bias, weight}
+[34mtext_projector.layers.1.{bias, weight}
+[31m[5mWARNING[39m[25m [07/05 03:46:42 fvcore.common.checkpoint]: The checkpoint state_dict contains keys that are not used by the model:
+  [35mhead.{bias, weight}
+  [35mlayers.0.blocks.1.attn_mask
+  [35mlayers.1.blocks.1.attn_mask
+  [35mlayers.2.blocks.1.attn_mask
+  [35mlayers.2.blocks.11.attn_mask
+  [35mlayers.2.blocks.13.attn_mask
+  [35mlayers.2.blocks.15.attn_mask
+  [35mlayers.2.blocks.17.attn_mask
+  [35mlayers.2.blocks.3.attn_mask
+  [35mlayers.2.blocks.5.attn_mask
+  [35mlayers.2.blocks.7.attn_mask
+  [35mlayers.2.blocks.9.attn_mask
+  [35mnorm.{bias, weight}
+Total Params: 236.324091 M
+[07/05 03:46:45 d2.engine.train_loop]: Starting training from iteration 0
+/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/functional.py:445: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180588308/work/aten/src/ATen/native/TensorShape.cpp:2157.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/functional.py:445: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180588308/work/aten/src/ATen/native/TensorShape.cpp:2157.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/functional.py:445: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180588308/work/aten/src/ATen/native/TensorShape.cpp:2157.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/functional.py:445: UserWarning: torch.meshgrid: in an upcoming release, it will be required to pass the indexing argument. (Triggered internally at  /opt/conda/conda-bld/pytorch_1639180588308/work/aten/src/ATen/native/TensorShape.cpp:2157.)
+  return _VF.meshgrid(tensors, **kwargs)  # type: ignore[attr-defined]
+[31m[4m[5mERROR[39m[24m[25m [07/05 03:47:15 d2.engine.train_loop]: Exception during training:
+Traceback (most recent call last):
+  File "/home/bingxing2/gpuuser206/OneFormer/detectron2/detectron2/engine/train_loop.py", line 155, in train
+    self.run_step()
+  File "/home/bingxing2/gpuuser206/OneFormer/detectron2/detectron2/engine/defaults.py", line 494, in run_step
+    self._trainer.run_step()
+  File "/home/bingxing2/gpuuser206/OneFormer/detectron2/detectron2/engine/train_loop.py", line 310, in run_step
+    loss_dict = self.model(data)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/parallel/distributed.py", line 886, in forward
+    output = self.module(*inputs[0], **kwargs[0])
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/bingxing2/gpuuser206/OneFormer/oneformer/oneformer_model.py", line 285, in forward
+    texts_x = self.encode_text(texts)
+  File "/home/bingxing2/gpuuser206/OneFormer/oneformer/oneformer_model.py", line 234, in encode_text
+    x = self.text_encoder(text)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/bingxing2/gpuuser206/OneFormer/oneformer/modeling/transformer_decoder/text_transformer.py", line 249, in forward
+    x = self.transformer(x)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/bingxing2/gpuuser206/OneFormer/oneformer/modeling/transformer_decoder/text_transformer.py", line 203, in forward
+    x = resblock(x)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/bingxing2/gpuuser206/OneFormer/oneformer/modeling/transformer_decoder/text_transformer.py", line 177, in forward
+    x = x + self.mlp(self.ln_2(x))
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/container.py", line 141, in forward
+    input = module(input)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/module.py", line 1102, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/modules/linear.py", line 103, in forward
+    return F.linear(input, self.weight, self.bias)
+  File "/home/bingxing2/gpuuser206/.conda/envs/oneformer/lib/python3.8/site-packages/torch/nn/functional.py", line 1848, in linear
+    return torch._C._nn.linear(input, weight, bias)
+RuntimeError: CUDA out of memory. Tried to allocate 82.00 MiB (GPU 0; 39.41 GiB total capacity; 36.64 GiB already allocated; 74.56 MiB free; 37.22 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+[07/05 03:47:15 d2.engine.hooks]: Total training time: 0:00:29 (0:00:00 on hooks)

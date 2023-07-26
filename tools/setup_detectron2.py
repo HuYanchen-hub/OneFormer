@@ -6,6 +6,6 @@ if not os.path.exists('./detectron2'):
 dist = distutils.core.run_setup("./detectron2/setup.py")
 
 for x in dist.install_requires:
-    subprocess.run(['python', '-m', 'pip', 'install', x])
+    subprocess.run(['python', '-m', 'pip', 'install', x, '-i', "https://pypi.tuna.tsinghua.edu.cn/simple"])
 
 sys.path.insert(0, os.path.abspath('./detectron2'))

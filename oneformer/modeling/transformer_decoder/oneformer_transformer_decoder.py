@@ -370,6 +370,7 @@ class ContrastiveMultiScaleMaskedTransformerDecoder(nn.Module):
         if self.mask_classification:
             self.class_embed = nn.Linear(hidden_dim, num_classes + 1)
         self.mask_embed = MLP(hidden_dim, hidden_dim, mask_dim, 3)
+        
 
     @classmethod
     def from_config(cls, cfg, in_channels, mask_classification):
@@ -413,7 +414,7 @@ class ContrastiveMultiScaleMaskedTransformerDecoder(nn.Module):
         del mask
 
         for i in range(self.num_feature_levels):
-            size_list.append(x[i].shape[-2:])
+            size_list.append(x[i].shape[-2:]) #()
             pos.append(self.pe_layer(x[i], None).flatten(2))
             src.append(self.input_proj[i](x[i]).flatten(2) + self.level_embed.weight[i][None, :, None])
 
@@ -425,21 +426,25 @@ class ContrastiveMultiScaleMaskedTransformerDecoder(nn.Module):
 
         # QxNxC
         query_embed = self.query_embed.weight.unsqueeze(1).repeat(1, bs, 1)
-        tasks = tasks.unsqueeze(0)
+        tasks = tasks.unsqueeze(0) #1,1,d
         if self.use_task_norm:
             tasks = self.decoder_norm(tasks)
         
         feats = self.pe_layer(mask_features, None)
-
+        
+        
         out_t, _ = self.class_transformer(feats, None, 
                                     self.query_embed.weight[:-1], 
                                     self.class_input_proj(mask_features),
                                     tasks if self.use_task_norm else None)
         out_t = out_t[0].permute(1, 0, 2)
         
+        
         out = torch.cat([out_t, tasks], dim=0)
 
         output = out.clone()
+        self.feats = output
+        
 
         predictions_class = []
         predictions_mask = []
@@ -448,6 +453,7 @@ class ContrastiveMultiScaleMaskedTransformerDecoder(nn.Module):
         outputs_class, outputs_mask, attn_mask = self.forward_prediction_heads(output, mask_features, attn_mask_target_size=size_list[0], i=0)
         predictions_class.append(outputs_class)
         predictions_mask.append(outputs_mask)
+
 
         for i in range(self.num_layers):
             level_index = i % self.num_feature_levels

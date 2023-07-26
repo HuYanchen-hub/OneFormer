@@ -28,9 +28,9 @@ def build_transform_gen(cfg, is_train):
         list[Augmentation]
     """
     assert is_train, "Only support training augmentation"
-    image_size = cfg.INPUT.IMAGE_SIZE
-    min_scale = cfg.INPUT.MIN_SCALE
-    max_scale = cfg.INPUT.MAX_SCALE
+    image_size = cfg.INPUT.IMAGE_SIZE # 1024
+    min_scale = cfg.INPUT.MIN_SCALE # 0.1
+    max_scale = cfg.INPUT.MAX_SCALE # 2.0
 
     augmentation = []
 
@@ -107,7 +107,7 @@ class COCOUnifiedNewBaselineDatasetMapper:
         self.things = []
         for k,v in self.meta.thing_dataset_id_to_contiguous_id.items():
             self.things.append(v)
-        self.class_names = self.meta.stuff_classes
+        self.class_names = self.meta.stuff_classes # all classes
         self.text_tokenizer = Tokenize(SimpleTokenizer(), max_seq_len=max_seq_len)
         self.task_tokenizer = Tokenize(SimpleTokenizer(), max_seq_len=task_seq_len)
         self.semantic_prob = semantic_prob
@@ -125,11 +125,11 @@ class COCOUnifiedNewBaselineDatasetMapper:
             "meta": meta,
             "tfm_gens": tfm_gens,
             "image_format": cfg.INPUT.FORMAT,
-            "num_queries": cfg.MODEL.ONE_FORMER.NUM_OBJECT_QUERIES - cfg.MODEL.TEXT_ENCODER.N_CTX,
-            "task_seq_len": cfg.INPUT.TASK_SEQ_LEN,
-            "max_seq_len": cfg.INPUT.MAX_SEQ_LEN,
-            "semantic_prob": cfg.INPUT.TASK_PROB.SEMANTIC,
-            "instance_prob": cfg.INPUT.TASK_PROB.INSTANCE,
+            "num_queries": cfg.MODEL.ONE_FORMER.NUM_OBJECT_QUERIES - cfg.MODEL.TEXT_ENCODER.N_CTX, # 120 - 16
+            "task_seq_len": cfg.INPUT.TASK_SEQ_LEN, # 77
+            "max_seq_len": cfg.INPUT.MAX_SEQ_LEN,   # 77
+            "semantic_prob": cfg.INPUT.TASK_PROB.SEMANTIC,  # 0.33
+            "instance_prob": cfg.INPUT.TASK_PROB.INSTANCE,  # 0.66
         }
         return ret
     
@@ -141,6 +141,7 @@ class COCOUnifiedNewBaselineDatasetMapper:
         masks = []
         label = np.ones_like(pan_seg_gt) * self.ignore_label
 
+        # 处理成语义分割标签， class不存在就添加该mask，class存在就加到masks[idx]中
         for segment_info in segments_info:
             class_id = segment_info["category_id"]
             if not segment_info["iscrowd"]:
@@ -154,9 +155,10 @@ class COCOUnifiedNewBaselineDatasetMapper:
                     else:
                         idx = classes.index(class_id)
                         masks[idx] += mask
-                        masks[idx] = np.clip(masks[idx], 0, 1).astype(np.bool)
+                        masks[idx] = np.clip(masks[idx], 0, 1).astype(np.bool_) # 限制在0，1之间
                     label[mask] = class_id
 
+        # 根据instances修改texts
         num = 0
         for i, cls_name in enumerate(self.class_names):
             if num_class_obj[cls_name] > 0:
@@ -311,7 +313,7 @@ class COCOUnifiedNewBaselineDatasetMapper:
             pan_seg_gt = transforms.apply_segmentation(pan_seg_gt)
 
             from panopticapi.utils import rgb2id
-            pan_seg_gt = rgb2id(pan_seg_gt)
+            pan_seg_gt = rgb2id(pan_seg_gt) # id
 
         prob_task = np.random.uniform(0,1.)
 
